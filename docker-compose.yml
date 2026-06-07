@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build:
+      context: ./filmbib        # bygg image fra filmbib-mappen
+      dockerfile: Dockerfile.frontend
+    ports:                      
+      - "3000:3000"             # kobler port 3000 på din maskin til port 3000 i containeren maskin:container
+    environment:
+      - TMDB_API_KEY=${TMDB_API_KEY}  # send inn API-nøkkel
+    depends_on:                 
+      - backend                 # sier at tjenesten skal vente til backend er oppe
+
+  backend:
+    build:
+      context: ./filmbib/backend  # bygg image fra backend-mappen
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env                    # les miljøvariabler fra .env
+    depends_on:
+      - db                      # vent til databasen er oppe
+
+  db:
+    image: mariadb:11           # bruk ferdig image, ingen Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}      # lag denne databasen automatisk
+      MYSQL_USER: ${DB_USER}          # lag denne brukeren automatisk
+      MYSQL_PASSWORD: ${DB_PASS}
+    volumes:
+      - mariadb_data:/var/lib/mysql         # bevar data mellom restarter
+      - ./filmbib/schema.sql:/docker-entrypoint-initdb.d/schema.sql  # kjør schema ved oppstart
+
+volumes:                        # volume lagrer data utenfor containeren, slik at det ikke går tapt når containeren slettes
+  mariadb_data:                 #sørger for at databasen ikke mister data når containeren slettes eller startes på nytt. Dataene lagres i et eget volum som Docker håndterer, og dette volumet kan gjenbrukes selv om containeren slettes.

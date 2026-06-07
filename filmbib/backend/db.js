@@ -1,7 +1,7 @@
 //Denne filen er ansvarlig for å snakke med databasen. Den setter opp tilkoblingen til databasen, og tilbyr funksjoner for å utføre SQL-spørringer. 
 
 
-require("dotenv").config({ path: __dirname + "/../.env" }); //Laster inn .env-filen til filen slik at passord  og annen data ikke hardkodes i koden. __dirname betyr at den ser etter .env-filen i mappen over backend-mappen, altså i rotmappen til prosjektet. Dette gjør at sensitive data som passord og API-nøkler ikke blir eksponert i koden, og det gjør det enklere å endre disse verdiene uten å måtte redigere selve koden.
+require("dotenv").config({ path: __dirname + "/../../.env" }); //Laster inn .env-filen til filen slik at passord  og annen data ikke hardkodes i koden. __dirname betyr at den ser etter .env-filen i mappen over backend-mappen, altså i rotmappen til prosjektet. Dette gjør at sensitive data som passord og API-nøkler ikke blir eksponert i koden, og det gjør det enklere å endre disse verdiene uten å måtte redigere selve koden.
 const mariadb = require("mariadb"); //Importerer MariaDB-biblioteket som brukes for å koble til og kommunisere med en mariadb-database
 
 //En pool er en samling av databasetilkoblinger som venter på å bli brukt. Når en applikasjon trenger å utføre noe med databasen, kan den be om en tilkobling fra poolen i stedet for å opprette en ny tilkobling hver gang. Det gjør applikasjonen mer effektiv og raskere. Når en tilkobling er ferdig brukt, blir den returnert til poolen slik at den kan gjenbrukes. 
