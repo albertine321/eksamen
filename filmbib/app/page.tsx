@@ -1,11 +1,4 @@
-type Movie = {
-  id: number;
-  title: string;
-  poster_path: string | null;
-  release_date: string;
-  vote_average: number;
-};
-
+//Claude
 async function getMovies() {
   try {
     const res = await fetch(
@@ -26,6 +19,14 @@ async function getMovies() {
   }
 }
 
+type Movie = {
+  id: number;
+  title: string;
+  poster_path: string | null;
+  release_date: string;
+  vote_average: number;
+};
+
 export default async function Home() {
   const movies = await getMovies();
 
@@ -39,7 +40,7 @@ export default async function Home() {
         <p className="text-zinc-400 mb-10">
           Populære filmer hentet fra TMDB
         </p>
-
+      </div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {movies?.results?.map((movie: Movie) => (
             <div
@@ -74,7 +75,6 @@ export default async function Home() {
             </div>
           ))}
         </div>
-      </div>
     </main>
   );
 }

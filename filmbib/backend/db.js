@@ -1,3 +1,4 @@
+//Fil hentet fra https://github.com/Madelelo/demokode/blob/main/backend/dbconnector.js + Claude
 //Denne filen er ansvarlig for å snakke med databasen. Den setter opp tilkoblingen til databasen, og tilbyr funksjoner for å utføre SQL-spørringer. 
 
 

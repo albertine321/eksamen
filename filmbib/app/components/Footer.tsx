@@ -1,4 +1,4 @@
-// components/Footer.tsx
+//Claude
 import Link from 'next/link';
 
 export default function Footer() {

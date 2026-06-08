@@ -5,8 +5,12 @@ services:
       dockerfile: Dockerfile.frontend
     ports:                      
       - "3000:3000"             # kobler port 3000 på din maskin til port 3000 i containeren maskin:container
+    volumes:
+    - ./filmbib:/app
+    - /app/node_modules
     environment:
       - TMDB_API_KEY=${TMDB_API_KEY}  # send inn API-nøkkel
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:3001
     depends_on:                 
       - backend                 # sier at tjenesten skal vente til backend er oppe
 

@@ -1,3 +1,4 @@
+//Fil hentet fra https://github.com/Madelelo/demokode/blob/main/backend/app.js
 //Denne filen er ansvarlig for å snakke med omverdenen. Den lytter etter forspørsler fra nettleseren, og bestemmer hva som skal skje på hvilken adresse, og bruker db.js til å hente eller lagre data. 
 
 //Henter inn express-biblioteket og lager en app instansvariabel(en variabel som tilhører et objekt, i dette tilfellet app-objektet som representer express-applikasjonen). )
@@ -9,6 +10,10 @@ const port = 3001;
 
 //henter inn blant annet query og close funksjonene fra db.js slik at jeg kan bruke dem i denne filen for å utføre SQL-spørringer og lukke tilkoblingen når jeg er ferdig.
 const db = require("./db");
+const cors = require("cors");
+app.use(cors());
+
+app.use(express.json()) //Trengs for at express skal kunne forstå JSON-data som sendes fra frontend, for eksempel når jeg sender en POST-forespørsel med en ny film til databasen. 
 
 //Dette er et endepunkt. app.get betyr at det er en GET-forespørsel, og "/" betyr at det er på rotadressen. Når noen besøker denne adressen i nettleseren, vil serveren svare med "Hei du - Velkommen til mitt filmbibliotek!". req er forespørselen som kommer inn, og res er svaret serveren sender tilbake.  
 app.get("/", (req, res) => {
