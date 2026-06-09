@@ -10,4 +10,7 @@ COPY . .
 
 EXPOSE 3000
 
+#måtte legge til siden next.js brukte for mye ram og da krasjet containeren
+ENV NODE_OPTIONS="--max-old-space-size=2048"
+
 CMD npm run dev
