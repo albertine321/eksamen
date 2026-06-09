@@ -32,7 +32,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-black text-white">
-      <div className="max-w-7xl mx-auto px-8 py-10">
+      <div className="max-w-7xl mx-auto px-8 py-10 pb-16">
         <h1 className="text-5xl font-bold mb-3">
           🎬 Filmbibliotek
         </h1>
@@ -50,7 +50,7 @@ export default async function Home() {
               {movie.poster_path ? (
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
+                  alt=""
                   className="w-full"
                 />
               ) : (

@@ -1,23 +1,23 @@
-# Use an official Node.js runtime as a parent image
+# start med Node.js som base image. Ber docker om å bruke node.js sitt offisielle image som utgangspunkt
 FROM node:20-alpine
 
-# Set the working directory in the container
+# jobb i denne mappen inne i containeren
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the container
+# kopier package.json inn i containeren
 COPY package*.json ./
 
-# Install dependencies
+# installer avhengigheter 
 RUN npm install
 
-# Copy the rest of the application source code to the container
+# kopier resten av koden inn i containeren
 COPY . .
 
-# Expose port 3001 to the outside world
+# si at port 3001 er tilgjengelig for andre containere og for host-maskinen
 EXPOSE 3001
 
 # Define environment variable
 ENV NODE_ENV=production
 
-# Command to run the application
+#  # start serveren
 CMD ["node", "app.js"]
